@@ -1,0 +1,61 @@
+<div class="row justify-content-center mt-4">
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-header text-center">
+                <h2>Login</h2>
+            </div>
+            <div class="card-body" *ngIf="!accesso">
+                <form #form="ngForm">
+                    <div class="mb-3">
+                        <div class="form-row">
+                            <label for="mail">E-mail</label>
+                            <input type="email"
+                                class="form-control"
+                                [ngClass]="{
+                                  'is-invalid': mail.invalid && mail.dirty,
+                                  'is-valid': mail.valid && mail.dirty
+                                }"
+                                #mail="ngModel"
+                                id="mail"
+                                name="mail"
+                                placeholder="Inserisci la mail"
+                                [(ngModel)]="model.mail"
+                                required
+                                pattern="^[a-z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,}$">
+                            <div *ngIf="mail.errors && mail.dirty" class="invalid-feedback">
+                              <p *ngIf="mail.errors['pattern']">Formato email non valido</p>
+                              <p *ngIf="mail.errors['required']">Campo obbligatorio</p>
+                            </div>
+                          </div>
+                    </div>
+                    <div class="mb-3">
+                        <div class="form-row">
+                            <label for="pwd">Password</label>
+                            <input type="password"
+                                class="form-control"
+                                [ngClass]="{
+                                  'is-invalid': pwd.invalid && pwd.dirty,
+                                  'is-valid': pwd.valid && pwd.dirty
+                                }"
+                                #pwd="ngModel"
+                                id="pwd"
+                                name="pwd"
+                                placeholder="Inserisci la password"
+                                [(ngModel)]="model.pwd"
+                                required
+                                minlength = 6>
+                            <div *ngIf="pwd.errors && pwd.dirty" class="invalid-feedback">
+                              <p *ngIf="pwd.errors['minlength']">Formato password non valido</p>
+                              <p *ngIf="pwd.errors['required']">Campo obbligatorio</p>
+                            </div>
+                          </div>
+                    </div>
+                    <button class="btn btn-primary w-100" (click)="accedi()" [disabled] = "form.invalid">Accedi</button>
+                </form>
+            </div>
+            <div *ngIf="accesso">
+              <h1 style="text-align: center;">ACCESSO EFFETTUATO!!!</h1>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,7 @@
+<section style="display: flex; align-items: center; justify-content: space-between; width: 100%;">
+    <button (click)="reset()" class="btn btn-primary w-100 m-2">RESET FORM</button>
+    <button (click)="accedi()" class="btn btn-primary w-100 m-2">LOGIN</button>
+    <button (click)="registrati()" class="btn btn-primary w-100 m-2">REGISTRATI</button>
+</section>
+<login *ngIf="a == 0"></login>
+<register *ngIf="a != 0"></register>

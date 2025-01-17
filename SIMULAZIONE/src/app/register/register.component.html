@@ -1,0 +1,134 @@
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header text-center">
+                    <h2>Registrazione</h2>
+                </div>
+                <div class="card-body" *ngIf="!reg">
+                    <form #registrationForm="ngForm">
+                        <div class="mb-3">
+                            <label for="id">ID</label>
+                            <input type="text"
+                                class="form-control"
+                                [ngClass]="{
+                                  'is-invalid': id.invalid && id.dirty,
+                                  'is-valid': id.valid && id.dirty
+                                }"
+                                #id="ngModel"
+                                id="id"
+                                name="id"
+                                placeholder="Inserisci ID (3 numeri)"
+                                [(ngModel)]="model.id"
+                                required
+                                pattern="\d{3}">
+                            <div *ngIf="id.errors && id.dirty" class="invalid-feedback">
+                              <p *ngIf="id.errors['pattern']">L'ID deve essere composto da 3 numeri</p>
+                              <p *ngIf="id.errors['required']">Campo obbligatorio</p>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="genere" class="form-label">Genere</label>
+                            <select id="genere" name="genere" class="form-select" [(ngModel)]="model.genere" required>
+                                <option value="Maschio">Maschio</option>
+                                <option value="Femmina">Femmina</option>
+                                <option value="Altro">Altro</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="nome">Nome</label>
+                            <input type="text"
+                                class="form-control"
+                                [ngClass]="{
+                                  'is-invalid': nome.invalid && nome.dirty,
+                                  'is-valid': nome.valid && nome.dirty
+                                }"
+                                #nome="ngModel"
+                                id="nome"
+                                name="nome"
+                                placeholder="Inserisci il nome"
+                                [(ngModel)]="model.nome"
+                                required>
+                            <div *ngIf="nome.errors && nome.dirty" class="invalid-feedback">
+                              <p *ngIf="nome.errors['required']">Campo obbligatorio</p>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="cognome">Cognome</label>
+                            <input type="text"
+                                class="form-control"
+                                [ngClass]="{
+                                  'is-invalid': cognome.invalid && cognome.dirty,
+                                  'is-valid': cognome.valid && cognome.dirty
+                                }"
+                                #cognome="ngModel"
+                                id="cognome"
+                                name="cognome"
+                                placeholder="Inserisci il cognome"
+                                [(ngModel)]="model.cognome"
+                                required>
+                            <div *ngIf="cognome.errors && cognome.dirty" class="invalid-feedback">
+                              <p *ngIf="cognome.errors['required']">Campo obbligatorio</p>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="mail">E-mail</label>
+                            <input type="email"
+                                class="form-control"
+                                [ngClass]="{
+                                  'is-invalid': mail.invalid && mail.dirty,
+                                  'is-valid': mail.valid && mail.dirty
+                                }"
+                                #mail="ngModel"
+                                id="mail"
+                                name="mail"
+                                placeholder="Inserisci la mail"
+                                [(ngModel)]="model.mail"
+                                required
+                                pattern="^[a-z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,}$">
+                            <div *ngIf="mail.errors && mail.dirty" class="invalid-feedback">
+                              <p *ngIf="mail.errors['pattern']">Formato email non valido</p>
+                              <p *ngIf="mail.errors['required']">Campo obbligatorio</p>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="città" class="form-label">Città</label>
+                            <input type="text" id="città" name="città" class="form-control" [(ngModel)]="model.citta" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="categoria" class="form-label">Categoria</label>
+                            <select id="categoria" name="categoria" class="form-select" [(ngModel)]="model.categoria">
+                                <option value="standard">Standard</option>
+                                <option value="premium">Premium</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="pwd">Password</label>
+                            <input type="password"
+                                class="form-control"
+                                [ngClass]="{
+                                  'is-invalid': pwd.invalid && pwd.dirty,
+                                  'is-valid': pwd.valid && pwd.dirty
+                                }"
+                                #pwd="ngModel"
+                                id="pwd"
+                                name="pwd"
+                                placeholder="Inserisci la password"
+                                [(ngModel)]="model.pwd"
+                                required
+                                minlength="6">
+                            <div *ngIf="pwd.errors && pwd.dirty" class="invalid-feedback">
+                              <p *ngIf="pwd.errors['minlength']">La password deve contenere almeno 6 caratteri</p>
+                              <p *ngIf="pwd.errors['required']">Campo obbligatorio</p>
+                            </div>
+                        </div>
+                        <button class="btn btn-primary w-100" [disabled]="registrationForm.invalid" (click)="registrati()">Registrati</button>
+                    </form>
+                </div>
+                <div *ngIf="reg">
+                    <h1 style="text-align: center;">REGISTRAZIONE EFFETTUATA!!!</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
